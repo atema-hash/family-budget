@@ -1,2 +1,3 @@
-# family-budget
-PET-Project for family budget. 
+# Семейный бюджет
+Добро пожаловать в наш PET-Project. 
+Мы ... 
