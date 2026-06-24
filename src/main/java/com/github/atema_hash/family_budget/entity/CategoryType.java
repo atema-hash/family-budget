@@ -5,16 +5,13 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-import java.beans.ConstructorProperties;
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "category_type")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category_type {
+public class CategoryType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +32,4 @@ public class Category_type {
 
     @Column(name = "category_desc")
     private String categoryDesc;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "s_type", nullable = false)
-    private Category_type categoryType;
 }

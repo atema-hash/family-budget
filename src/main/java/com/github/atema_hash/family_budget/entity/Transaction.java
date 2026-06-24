@@ -1,6 +1,6 @@
 package com.github.atema_hash.family_budget.entity;
 
-
+import com.github.atema_hash.family_budget.entity.CategoryType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,4 +36,8 @@ public class Transaction {
 
     @Column(name = "description")
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "s_type", nullable = false)
+    private CategoryType categoryType;
 }
