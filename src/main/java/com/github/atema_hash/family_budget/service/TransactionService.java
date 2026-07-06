@@ -1,5 +1,6 @@
 package com.github.atema_hash.family_budget.service;
 
+import com.github.atema_hash.family_budget.dto.SummaryDTO;
 import com.github.atema_hash.family_budget.dto.TransactionDTO;
 import com.github.atema_hash.family_budget.dto.TransactionResponseDTO;
 import com.github.atema_hash.family_budget.entity.CategoryType;
@@ -10,6 +11,7 @@ import com.github.atema_hash.family_budget.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,6 +64,10 @@ public class TransactionService {
         dto.setCategoryTypeId(transaction.getCategoryType().getSType());
         dto.setCategoryName(transaction.getCategoryType().getCategoryName());
         return dto;
+    }
+
+    public List<SummaryDTO> getSummary(LocalDate from, LocalDate to) {
+        return transactionRepository.findSummaryByCategory(from, to);
     }
 
  }
