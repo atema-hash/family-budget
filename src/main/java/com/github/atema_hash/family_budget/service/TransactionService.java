@@ -4,6 +4,7 @@ import com.github.atema_hash.family_budget.dto.TransactionDTO;
 import com.github.atema_hash.family_budget.dto.TransactionResponseDTO;
 import com.github.atema_hash.family_budget.entity.CategoryType;
 import com.github.atema_hash.family_budget.entity.Transaction;
+import com.github.atema_hash.family_budget.exception.ResourceNotFoundException;
 import com.github.atema_hash.family_budget.repository.CategoryTypeRepository;
 import com.github.atema_hash.family_budget.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,13 +28,13 @@ public class TransactionService {
 
     public TransactionResponseDTO findById(Long id) {
         Transaction transaction = transactionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Transaction not found: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Transaction not found: " + id));
         return toResponseDTO(transaction);
     }
 
     public Transaction create(TransactionDTO dto) {
         CategoryType categoryType = categoryTypeRepository.findById(dto.getCategoryTypeId())
-                .orElseThrow(() -> new RuntimeException("Category not found: " + dto.getCategoryTypeId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found: " + dto.getCategoryTypeId()));
 
         Transaction transaction = new Transaction();
         transaction.setName(dto.getName());
